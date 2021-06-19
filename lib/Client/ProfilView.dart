@@ -18,7 +18,7 @@ class ProfilView extends State<ProfilVie> {
   TextEditingController _ageController = TextEditingController();
   TextEditingController _phoneController = TextEditingController();
   TextEditingController _wilayaController = TextEditingController();
-  TextEditingController _EmailController = TextEditingController();
+  TextEditingController _emailController = TextEditingController();
   TextEditingController controller = TextEditingController();
 
   GlobalKey<FormState> formkey = GlobalKey<FormState>();
@@ -172,7 +172,7 @@ class ProfilView extends State<ProfilVie> {
                                 height: 15,
                               ),
                               TextFormField(
-                                controller: _EmailController,
+                                controller: _emailController,
                                 decoration: InputDecoration(
                                   hintText: "email".toUpperCase(),
                                   labelText:

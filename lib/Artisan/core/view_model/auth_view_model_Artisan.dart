@@ -1,8 +1,8 @@
-import 'package:final_project/Artisan/HomeArt.dart';
 import 'package:final_project/Artisan/loginView_Art.dart';
 import 'package:final_project/Artisan/model/Artisan_model.dart';
-import 'package:final_project/Client/core/service/FirestoreService.dart';
+import 'package:final_project/Client/HomeClient.dart';
 import 'package:final_project/Client/core/service/firestore_user.dart';
+import 'package:final_project/Home/screens/main/main_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -50,6 +50,7 @@ class AuthViewModelArtisan extends GetxController {
 
   void googleSignInMethod() async {
     final GoogleSignInAccount googleUser = await _googleSignIn.signIn();
+    print(googleUser);
 
     GoogleSignInAuthentication googleSignInAuthentication =
         await googleUser.authentication;
@@ -60,26 +61,15 @@ class AuthViewModelArtisan extends GetxController {
       accessToken: googleSignInAuthentication.accessToken,
     );
     await _auth.signInWithCredential(Credential).then((artisan) async {
-      await FireStoreService().getArtCurr(_auth.currentUser.uid);
       saveUserArt(artisan);
-      Get.offAll(HomeArt());
+      Get.offAll(HomeCLient());
     });
-  }
-
-  void signOut() async {
-    GoogleSignIn().signOut();
-    _auth.signOut();
-    print(_auth.currentUser);
   }
 
   void signInWithEmailAndPasswordArt() async {
     try {
-      await _auth
-          .signInWithEmailAndPassword(email: email, password: password)
-          .then((value) async {
-        await FireStoreService().getArtCurr(_auth.currentUser.uid);
-        Get.offAll(HomeArt());
-      });
+      await _auth.signInWithEmailAndPassword(email: email, password: password);
+      Get.offAll(HomeCLient());
     } catch (e) {
       print("$e");
       Get.snackbar("Error login account", "$e",
@@ -91,11 +81,13 @@ class AuthViewModelArtisan extends GetxController {
     try {
       await _auth
           .createUserWithEmailAndPassword(email: email, password: password)
-          .then((artisan) async {
-        await FireStoreService().getArtCurr(_auth.currentUser.uid);
-        saveUserArt(artisan);
-        Get.offAll(HomeArt());
-      });
+          .then((user) async {
+        saveUserArt(user);
+        Get.offAll(MainScreen());
+        Get.snackbar("Account is Create ", "Success");
+      }).catchError((onError) => Get.snackbar(
+              "Error In Creating Account", onError.message,
+              colorText: Colors.black, snackPosition: SnackPosition.BOTTOM));
     } catch (e) {
       print(e);
       Get.snackbar(
@@ -118,7 +110,7 @@ class AuthViewModelArtisan extends GetxController {
         pic:
             "https://firebasestorage.googleapis.com/v0/b/final-project-25372.appspot.com/o/logo.png?alt=media&token=b7bc4a2c-aa5c-48df-8988-a1ccd03d88ca",
         phonenumber: phonenumber == null ? "vide" : phonenumber,
-        prof: prof == null ? "vide" : prof));
+        prof: prof));
     await FireStoreUsers().addUserToFireStoreArtisan(artisanModel);
   }
 
@@ -150,28 +142,24 @@ class AuthViewModelArtisan extends GetxController {
     return null;
   }
 
-  // ignore: missing_return
   String validateFullname(String value) {
     if (value.isEmpty == true) {
       return "Full Name vide";
     }
   }
 
-  // ignore: missing_return
   String validateUsername(String value) {
     if (value.isEmpty == true) {
       return "Username  vide";
     }
   }
 
-  // ignore: missing_return
   String validateCPassword(String value) {
     if (confimP != password) {
       return "Password wrong";
     }
   }
 
-  // ignore: missing_return
   String validatePhone(String value) {
     if (value.isEmpty == true) {
       return "phone number vide";
@@ -186,7 +174,6 @@ class AuthViewModelArtisan extends GetxController {
     }
   }
 
-  // ignore: missing_return
   String validateAge(String value) {
     if (value.isEmpty == true) {
       return "age vide";
@@ -197,7 +184,6 @@ class AuthViewModelArtisan extends GetxController {
     }
   }
 
-  // ignore: missing_return
   String validateCity(String value) {
     if (value.isEmpty == true) {
       return "City vide";

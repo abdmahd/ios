@@ -27,7 +27,7 @@ class ArtisanModel {
       return;
     }
 
-    artisanId = json['userId'];
+    artisanId = json['artisanId'];
     email = json['email'];
     fullname = json['fullname'];
     username = json['username'];
@@ -41,7 +41,7 @@ class ArtisanModel {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
 
-    data['userId'] = this.artisanId;
+    data['artisanId'] = this.artisanId;
     data['email'] = this.email;
     data['fullname'] = this.fullname;
     data['username'] = this.username;

@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:final_project/Artisan/model/Artisan_model.dart';
 import 'package:final_project/Client/core/service/FirestoreService.dart';
+import 'package:final_project/Client/model/Demande.dart';
 import 'package:final_project/Client/model/apeel_model.dart';
 import 'package:final_project/Client/model/user_model.dart';
 import 'package:flutter/material.dart';
@@ -44,6 +45,13 @@ class FireStoreUsers extends GetxController {
 
   Future<void> addAppeleToFireStore(ApellModel apellModel) async {
     return await _appeloffert.add(apellModel.toJson());
+  }
+
+  final CollectionReference _demande =
+      FirebaseFirestore.instance.collection('Demande');
+
+  Future<void> addDemandeToFireStore(Demande demandemodel) async {
+    return await _demande.add(demandemodel.toJson());
   }
 
   FireStoreUsers() {

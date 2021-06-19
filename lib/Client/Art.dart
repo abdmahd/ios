@@ -4,7 +4,7 @@ import 'package:final_project/responsive.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class Art extends StatelessWidget {
+class Art extends GetWidget<FireStoreUsers> {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<FireStoreUsers>(
@@ -23,7 +23,7 @@ class Art extends StatelessWidget {
                   ));
                 },
                 child: Container(
-                  width: MediaQuery.of(context).size.width * .4,
+                  width: MediaQuery.of(context).size.width * .3,
                   child: Row(
                     children: [
                       Container(
@@ -32,8 +32,8 @@ class Art extends StatelessWidget {
                           color: Colors.white,
                         ),
                         child: Container(
-                            height: 170,
-                            width: 150,
+                            height: 200,
+                            width: 200,
                             child: Image.network(
                               controller.artisanModel[index].pic,
                               fit: BoxFit.fill,

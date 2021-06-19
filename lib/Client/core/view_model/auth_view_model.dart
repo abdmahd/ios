@@ -3,11 +3,13 @@ import 'package:final_project/Client/core/service/FirestoreService.dart';
 
 import 'package:final_project/Client/core/service/firestore_user.dart';
 import 'package:final_project/Client/loginView.dart';
+import 'package:final_project/Client/model/Demande.dart';
 import 'package:final_project/Client/model/apeel_model.dart';
 import 'package:final_project/Client/model/user_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthViewModel extends GetxController {
@@ -72,6 +74,7 @@ class AuthViewModel extends GetxController {
     });
   }
 
+  final box = GetStorage();
   void signInWithEmailAndPassword() async {
     try {
       await _auth
@@ -120,6 +123,23 @@ class AuthViewModel extends GetxController {
       Get.snackbar(" Appele is add", "Success");
     }).catchError((onError) => Get.snackbar(
         "Error In Adding this appele", onError.message,
+        colorText: Colors.black, snackPosition: SnackPosition.BOTTOM));
+  }
+
+  addDemande(String uid) async {
+    Demande demandemodel = (Demande(
+      userId: _auth.currentUser.uid,
+      artisanId: uid,
+      typeWork: typework,
+      wilaya: wilaya,
+      description: description,
+    ));
+    print(_auth.currentUser.uid);
+    await FireStoreUsers().addDemandeToFireStore(demandemodel).then((value) {
+      Get.offAll(HomeCLient());
+      Get.snackbar(" Demande is add", "Success");
+    }).catchError((onError) => Get.snackbar(
+        "Error In Adding this Demande", onError.message,
         colorText: Colors.black, snackPosition: SnackPosition.BOTTOM));
   }
 

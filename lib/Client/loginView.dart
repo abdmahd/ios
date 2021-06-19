@@ -101,6 +101,7 @@ class LoginView extends GetWidget<AuthViewModel> {
                                     border: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(23),
                                         borderSide: BorderSide.none),
+
                                     filled: true,
                                     fillColor: Colors.white,
                                     hintText: "*****@****.com",
@@ -123,6 +124,7 @@ class LoginView extends GetWidget<AuthViewModel> {
                                 ),
                                 SizedBox(height: kDefaultPadding * 1),
                                 TextFormField(
+                                  obscureText: true,
                                   style: TextStyle(color: Colors.black),
                                   // obscureText: true,
                                   onSaved: (value) {
@@ -137,6 +139,7 @@ class LoginView extends GetWidget<AuthViewModel> {
                                       borderSide: BorderSide.none,
                                     ),
                                     labelText: "Password",
+                                    
                                     filled: true,
                                     fillColor: Colors.white,
                                     hintText: "*******",
