@@ -6,6 +6,7 @@ import 'package:final_project/Client/core/view_model/auth_view_model.dart';
 
 import 'package:final_project/Client/responsive.dart';
 import 'package:final_project/Home/constants.dart';
+import 'package:final_project/Home/contactus.dart';
 import 'package:final_project/Home/screens/main/main_screen.dart';
 
 import 'package:flutter/material.dart';
@@ -13,6 +14,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 class HomeCLient extends StatelessWidget {
+  static const routeName = '/HomeClient';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,13 +51,13 @@ class SideMenuClient extends StatelessWidget {
             DrawerListTile(
               title: "Home-Page",
               press: () {
-                Get.offAll(AppleOffer());
+                Get.offAllNamed(AppleOffer.routeName);
               },
             ),
             DrawerListTile(
               title: "Profil",
               press: () {
-                Get.offAll(ProfilVie());
+                Get.offAllNamed(ProfilVie.routeName);
               },
             ),
             DrawerListTile(
@@ -68,12 +70,14 @@ class SideMenuClient extends StatelessWidget {
             ),
             DrawerListTile(
               title: "Contact us",
-              press: () {},
+              press: () {
+                Get.offAllNamed(Contact_us.routeName);
+              },
             ),
             DrawerListTile(
               title: "Log out",
               press: () {
-                Get.offAll(MainScreen());
+                Get.offAllNamed(MainScreen.routeName);
               },
             ),
           ],

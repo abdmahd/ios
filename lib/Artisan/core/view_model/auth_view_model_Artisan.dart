@@ -1,3 +1,4 @@
+import 'package:final_project/Artisan/HomeArt.dart';
 import 'package:final_project/Artisan/loginView_Art.dart';
 import 'package:final_project/Artisan/model/Artisan_model.dart';
 import 'package:final_project/Client/HomeClient.dart';
@@ -62,14 +63,14 @@ class AuthViewModelArtisan extends GetxController {
     );
     await _auth.signInWithCredential(Credential).then((artisan) async {
       saveUserArt(artisan);
-      Get.offAll(HomeCLient());
+      Get.offAll(HomeArt());
     });
   }
 
   void signInWithEmailAndPasswordArt() async {
     try {
       await _auth.signInWithEmailAndPassword(email: email, password: password);
-      Get.offAll(HomeCLient());
+      Get.offAll(HomeArt());
     } catch (e) {
       print("$e");
       Get.snackbar("Error login account", "$e",
@@ -110,7 +111,7 @@ class AuthViewModelArtisan extends GetxController {
         pic:
             "https://firebasestorage.googleapis.com/v0/b/final-project-25372.appspot.com/o/logo.png?alt=media&token=b7bc4a2c-aa5c-48df-8988-a1ccd03d88ca",
         phonenumber: phonenumber == null ? "vide" : phonenumber,
-        prof: prof));
+        prof: prof == null ? prof : 'vide'));
     await FireStoreUsers().addUserToFireStoreArtisan(artisanModel);
   }
 

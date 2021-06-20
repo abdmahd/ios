@@ -18,7 +18,7 @@ class AppleOffer extends StatelessWidget {
           ),
           leading: IconButton(
             onPressed: () {
-              Get.to(HomeCLient());
+              Get.offAllNamed(HomeCLient.routeName);
             },
             icon: Icon(Icons.arrow_back),
           ),

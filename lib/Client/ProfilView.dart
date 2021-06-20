@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ProfilVie extends StatefulWidget {
+  static const routeName = '/ProfilClient';
   @override
   ProfilView createState() => ProfilView();
 }

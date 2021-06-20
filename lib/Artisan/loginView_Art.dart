@@ -48,7 +48,6 @@ class LoginViewArt extends GetWidget<AuthViewModelArtisan> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Expanded(
-                flex: 2,
                 child: Center(
                   child: Container(
                     constraints: BoxConstraints(maxWidth: kMaxWidth),

@@ -8,10 +8,6 @@ import 'package:get/get.dart';
 import '../../../../responsive.dart';
 
 class SideMenu extends StatelessWidget {
-  const SideMenu({
-    Key key,
-  }) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -27,13 +23,13 @@ class SideMenu extends StatelessWidget {
             DrawerListTile(
               title: "Admin",
               press: () {
-                Get.offAll(AuthAdmin());
+                Get.offAllNamed(AuthAdmin.routeName);
               },
             ),
           DrawerListTile(
             title: "client",
             press: () {
-              Get.offAll(LoginView());
+              Get.offAllNamed(LoginView.routeName);
             },
           ),
           DrawerListTile(
@@ -49,7 +45,7 @@ class SideMenu extends StatelessWidget {
           DrawerListTile(
             title: "Contact us",
             press: () {
-              Get.offAll(Contact_us());
+              Get.offAllNamed(Contact_us.routeName);
             },
           ),
         ],

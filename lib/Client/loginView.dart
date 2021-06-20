@@ -9,6 +9,7 @@ import 'package:get/get.dart';
 import '../Home/constants.dart';
 
 class LoginView extends GetWidget<AuthViewModel> {
+  static const routeName = '/LoginClient';
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
@@ -21,7 +22,7 @@ class LoginView extends GetWidget<AuthViewModel> {
             color: Colors.black,
           ),
           onPressed: () {
-            Get.offAll(MainScreen());
+            Get.offAllNamed(MainScreen.routeName);
           },
         ),
         backgroundColor: Colors.white,
@@ -101,7 +102,6 @@ class LoginView extends GetWidget<AuthViewModel> {
                                     border: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(23),
                                         borderSide: BorderSide.none),
-
                                     filled: true,
                                     fillColor: Colors.white,
                                     hintText: "*****@****.com",
@@ -139,7 +139,6 @@ class LoginView extends GetWidget<AuthViewModel> {
                                       borderSide: BorderSide.none,
                                     ),
                                     labelText: "Password",
-                                    
                                     filled: true,
                                     fillColor: Colors.white,
                                     hintText: "*******",
@@ -158,7 +157,8 @@ class LoginView extends GetWidget<AuthViewModel> {
                                   children: [
                                     GestureDetector(
                                       onTap: () {
-                                        Get.to(ForgotPassword());
+                                        Get.offAllNamed(
+                                            ForgotPassword.routeName);
                                       },
                                       child: Text(
                                         "Forget password?",
@@ -213,7 +213,7 @@ class LoginView extends GetWidget<AuthViewModel> {
                                 Center(
                                   child: GestureDetector(
                                     onTap: () {
-                                      Get.to(SignScreen());
+                                      Get.offAllNamed(SignScreen.routeName);
                                     },
                                     child: Text(
                                       "Sign In",

@@ -1,4 +1,5 @@
-import 'package:final_project/Admin/gestion%20comptes/Appels.dart';
+import 'package:final_project/Admin/gestion%20comptes/ArtisanAccount.dart';
+import 'package:final_project/Admin/gestion%20comptes/UserAccount.dart';
 import 'package:final_project/Admin/screens/dashboard/components/header.dart';
 import 'package:final_project/Admin/screens/dashboard/dashboard_screen.dart';
 import 'package:final_project/Client/constants.dart';
@@ -6,9 +7,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../responsive.dart';
-import 'Appel.dart';
 
 class Comptes extends StatelessWidget {
+  static const routeName = '/Accounts';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -65,7 +66,7 @@ class DashboardComptes extends GetWidget {
                             children: [
                               FlatButton.icon(
                                   onPressed: () {
-                                    Get.to(Appel());
+                                    Get.offAllNamed(ArtisanAccounts.routeName);
                                   },
                                   icon: Icon(Icons.list),
                                   label: Text("Liste Artisan ")),
@@ -89,7 +90,7 @@ class DashboardComptes extends GetWidget {
                             children: [
                               FlatButton.icon(
                                   onPressed: () {
-                                    Get.to(Appels());
+                                    Get.offAllNamed(UserAccounts.routeName);
                                   },
                                   icon: Icon(Icons.list),
                                   label: Text("Liste Client")),

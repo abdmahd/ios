@@ -9,7 +9,7 @@ class SideMenuAdmin extends StatelessWidget {
       child: ListView(
         children: [
           DrawerHeader(
-            child: Image.asset("assets/images/logo.png"),
+            child: Image.asset("assets/images/admin.jpeg"),
           ),
           ListTile(
             onTap: () {},
@@ -29,7 +29,7 @@ class SideMenuAdmin extends StatelessWidget {
           ),
           ListTile(
             onTap: () {
-              Get.offAll(MainScreen());
+              Get.offAllNamed(MainScreen.routeName);
             },
             leading: Icon(
               Icons.logout,
