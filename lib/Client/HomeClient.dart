@@ -77,6 +77,7 @@ class SideMenuClient extends StatelessWidget {
             DrawerListTile(
               title: "Log out",
               press: () {
+                controller.signOut();
                 Get.offAllNamed(MainScreen.routeName);
               },
             ),

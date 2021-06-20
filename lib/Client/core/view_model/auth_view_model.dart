@@ -121,6 +121,12 @@ class AuthViewModel extends GetxController {
     }
   }
 
+  void signOut() async {
+    GoogleSignIn().signOut();
+    _auth.signOut();
+    box.erase();
+  }
+
   addAppele() async {
     ApellModel appelmodel = (ApellModel(
       userId: _auth.currentUser.uid,
