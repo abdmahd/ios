@@ -1,8 +1,11 @@
+import 'package:final_project/Admin/gestion%20comptes/Comptes.dart';
+import 'package:final_project/Admin/gestion%20comptes/DeleteArtisan.dart';
 import 'package:final_project/Client/core/service/firestore_user.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class Appel extends StatelessWidget {
+class ArtisanAccounts extends StatelessWidget {
+  static const routeName = '/ArtisanAccounts';
   @override
   Widget build(BuildContext context) {
     // ignore: missing_required_param
@@ -10,6 +13,12 @@ class Appel extends StatelessWidget {
       init: FireStoreUsers(),
       builder: (controller) => Scaffold(
           appBar: AppBar(
+            leading: IconButton(
+              onPressed: () {
+                Get.offAllNamed(Comptes.routeName);
+              },
+              icon: Icon(Icons.arrow_back),
+            ),
             title: Container(
               //  alignment: Alignment.center,
               child: Table(
@@ -91,11 +100,17 @@ class Appel extends StatelessWidget {
                               Column(
                                 children: [
                                   new FlatButton.icon(
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        Get.offAll(deleteArtisan(
+                                            model: controller
+                                                .artisanModel[index]));
+                                      },
                                       label: Text('SUPPRIMER'),
                                       icon: Icon(Icons.delete)),
                                   new FlatButton.icon(
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        controller.launchURL();
+                                      },
                                       label: Text('BLOQUER'),
                                       icon: Icon(Icons.lock)),
                                 ],
@@ -109,7 +124,3 @@ class Appel extends StatelessWidget {
     );
   }
 }
-
-// columnWidths: {
-// 1: FlexColumnWidth(.10),
-// },

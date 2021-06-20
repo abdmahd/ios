@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class Ask extends StatelessWidget {
+  static const routeName = '/AskArtisan';
   final GlobalKey<FormState> _formsKey = GlobalKey<FormState>();
 
   TextEditingController _typecontroller = TextEditingController();

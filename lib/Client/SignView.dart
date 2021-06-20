@@ -8,7 +8,8 @@ import '../Home/constants.dart';
 import 'loginView.dart';
 
 class SignScreen extends GetWidget<AuthViewModel> {
-  final GlobalKey<FormState> _formsKey = GlobalKey<FormState>();
+  static const routeName = '/SignUpClient';
+  final GlobalKey<FormState> _formsKe = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +21,7 @@ class SignScreen extends GetWidget<AuthViewModel> {
             color: Colors.black,
           ),
           onPressed: () {
-            Get.offAll(MainScreen());
+            Get.offAllNamed(MainScreen.routeName);
           },
         ),
         backgroundColor: Colors.white,
@@ -65,7 +66,7 @@ class SignScreen extends GetWidget<AuthViewModel> {
                     ),
                   ),
                   Form(
-                    key: _formsKey,
+                    key: _formsKe,
                     child: Expanded(
                       flex: 4,
                       child: Padding(
@@ -300,9 +301,9 @@ class SignScreen extends GetWidget<AuthViewModel> {
                                     padding:
                                         EdgeInsets.only(right: 100, left: 100),
                                     onPressed: () {
-                                      _formsKey.currentState.save();
+                                      _formsKe.currentState.save();
 
-                                      if (_formsKey.currentState.validate()) {
+                                      if (_formsKe.currentState.validate()) {
                                         controller
                                             .createAccountWithEmailAndPassword();
                                       }
@@ -329,7 +330,7 @@ class SignScreen extends GetWidget<AuthViewModel> {
                                 Center(
                                   child: GestureDetector(
                                     onTap: () {
-                                      Get.to(LoginView());
+                                      Get.offAllNamed(LoginView.routeName);
                                     },
                                     child: Text(
                                       "Log In",

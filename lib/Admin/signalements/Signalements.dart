@@ -7,13 +7,12 @@ import 'package:get/get_state_manager/src/simple/get_view.dart';
 
 import '../../responsive.dart';
 
-
 class Signalments extends StatelessWidget {
-  const Signalments
-({ Key key }) : super(key: key);
+  static const routeName = '/Signalements';
+  const Signalments({Key key}) : super(key: key);
 
   @override
- Widget build(BuildContext context) {
+  Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
         child: Row(
@@ -37,6 +36,7 @@ class Signalments extends StatelessWidget {
     );
   }
 }
+
 class DashboardSignalments extends GetWidget {
   @override
   Widget build(BuildContext context) {
@@ -45,25 +45,16 @@ class DashboardSignalments extends GetWidget {
         padding: EdgeInsets.all(defaultPadding),
         child: Column(
           children: [
-            
             Header(),
             SizedBox(height: 200),
-        
             Row(
-  
               children: [
-                    Spacer(),
-                   
-                    ],
-                  ),
-               
-              
-
+                Spacer(),
               ],
             ),
-          
+          ],
         ),
-      );
-  
+      ),
+    );
   }
 }

@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class DetailsView extends StatelessWidget {
+  static const routeName = '/DetailsArt';
   ArtisanModel model;
 
   DetailsView({this.model});

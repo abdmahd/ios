@@ -1,4 +1,3 @@
-
 import 'package:final_project/Admin/screens/dashboard/components/header.dart';
 import 'package:final_project/Admin/screens/dashboard/dashboard_screen.dart';
 import 'package:final_project/Client/constants.dart';
@@ -9,12 +8,13 @@ import 'package:get/get_state_manager/src/simple/get_view.dart';
 import '../../responsive.dart';
 
 class Reclamation extends StatelessWidget {
-  const Reclamation({ Key key }) : super(key: key);
+  static const routeName = '/Reclamations';
+  const Reclamation({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-         drawer: SideMenu(),
+      drawer: SideMenu(),
       body: SafeArea(
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -29,16 +29,12 @@ class Reclamation extends StatelessWidget {
             Expanded(
               // It takes 5/6 part of the screen
               flex: 5,
-                    child :
-                    DashboardReclamation(),
-                        
-                  ),
-               
-              ],
+              child: DashboardReclamation(),
             ),
-          
+          ],
         ),
-      );
+      ),
+    );
   }
 }
 
@@ -50,25 +46,16 @@ class DashboardReclamation extends GetWidget {
         padding: EdgeInsets.all(defaultPadding),
         child: Column(
           children: [
-            
             Header(),
             SizedBox(height: 200),
-        
             Row(
-  
               children: [
-                    Spacer(),
-                   
-                    ],
-                  ),
-               
-              
-
+                Spacer(),
               ],
             ),
-          
+          ],
         ),
-      );
-  
+      ),
+    );
   }
 }

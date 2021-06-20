@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 
 class ProfilView extends StatelessWidget {
   final GlobalKey<FormState> formkey = GlobalKey<FormState>();
+  static const routeName = '/ProfilView';
 
   @override
   Widget build(BuildContext context) {
@@ -123,7 +124,7 @@ class ProfilView extends StatelessWidget {
                                           .box
                                           .read("user")['username'];
                                     } else {
-                                      controller.username = value;
+                                      controller.age = value;
                                     }
                                   },
                                   decoration: InputDecoration(

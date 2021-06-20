@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class Art extends GetWidget<FireStoreUsers> {
+  static const routeName = '/ArtisanList';
   @override
   Widget build(BuildContext context) {
     return GetBuilder<FireStoreUsers>(
@@ -18,7 +19,7 @@ class Art extends GetWidget<FireStoreUsers> {
             itemBuilder: (context, index) {
               return GestureDetector(
                 onTap: () {
-                  Get.to(DetailsView(
+                  Get.offAll(DetailsView(
                     model: controller.artisanModel[index],
                   ));
                 },

@@ -7,7 +7,11 @@ import 'package:final_project/Client/core/view_model/auth_view_model.dart';
 
 import 'package:final_project/Client/responsive.dart';
 import 'package:final_project/Home/constants.dart';
+<<<<<<< HEAD
 import 'package:final_project/Home/screens/home/home_screen.dart';
+=======
+import 'package:final_project/Home/contactus.dart';
+>>>>>>> 85170866ade64c164f257c8b00966da5a8d3ff9d
 import 'package:final_project/Home/screens/main/main_screen.dart';
 
 import 'package:flutter/material.dart';
@@ -15,6 +19,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 class HomeCLient extends StatelessWidget {
+  static const routeName = '/HomeClient';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,13 +56,21 @@ class SideMenuClient extends StatelessWidget {
             DrawerListTile(
               title: "Home-Page",
               press: () {
+<<<<<<< HEAD
                 Get.offAll(HomeCLient());
+=======
+                Get.offAllNamed(AppleOffer.routeName);
+>>>>>>> 85170866ade64c164f257c8b00966da5a8d3ff9d
               },
             ),
             DrawerListTile(
               title: "Profil",
               press: () {
+<<<<<<< HEAD
                 Get.offAll(ProfilView());
+=======
+                Get.offAllNamed(ProfilVie.routeName);
+>>>>>>> 85170866ade64c164f257c8b00966da5a8d3ff9d
               },
             ),
             DrawerListTile(
@@ -77,12 +90,15 @@ class SideMenuClient extends StatelessWidget {
             ),
             DrawerListTile(
               title: "Contact us",
-              press: () {},
+              press: () {
+                Get.offAllNamed(Contact_us.routeName);
+              },
             ),
             DrawerListTile(
               title: "Log out",
               press: () {
-                Get.offAll(MainScreen());
+                controller.signOut();
+                Get.offAllNamed(MainScreen.routeName);
               },
             ),
           ],

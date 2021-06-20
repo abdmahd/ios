@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 
 // ignore: camel_case_types
 class Contact_us extends StatelessWidget {
+  static const routeName = '/ContactUs';
   final MenuController _controller = Get.put(MenuController());
   @override
   Widget build(BuildContext context) {

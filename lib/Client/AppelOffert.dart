@@ -15,7 +15,17 @@ class AppleOffer extends StatelessWidget {
         appBar: AppBar(
           title: Text(
             "Fomulair",
+<<<<<<< HEAD
             style: TextStyle(color: Colors.lightBlue),
+=======
+            style: TextStyle(color: Colors.black),
+          ),
+          leading: IconButton(
+            onPressed: () {
+              Get.offAllNamed(HomeCLient.routeName);
+            },
+            icon: Icon(Icons.arrow_back),
+>>>>>>> 85170866ade64c164f257c8b00966da5a8d3ff9d
           ),
           backgroundColor: Colors.white,
         ),

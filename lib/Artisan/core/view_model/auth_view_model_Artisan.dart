@@ -111,7 +111,7 @@ class AuthViewModelArtisan extends GetxController {
         pic:
             "https://firebasestorage.googleapis.com/v0/b/final-project-25372.appspot.com/o/logo.png?alt=media&token=b7bc4a2c-aa5c-48df-8988-a1ccd03d88ca",
         phonenumber: phonenumber == null ? "vide" : phonenumber,
-        prof: prof));
+        prof: prof == null ? prof : 'vide'));
     await FireStoreUsers().addUserToFireStoreArtisan(artisanModel);
   }
 

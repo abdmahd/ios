@@ -1,4 +1,3 @@
-import 'package:final_project/Admin/appeles_doffre/appeles.dart';
 import 'package:final_project/Admin/gestion%20comptes/Comptes.dart';
 import 'package:final_project/Admin/gestion%20reclamation/Reclamation.dart';
 import 'package:final_project/Admin/screens/main/main_screen.dart';
@@ -28,7 +27,7 @@ class DashboardScreen extends GetWidget {
                 // ignore: deprecated_member_use
                 RaisedButton.icon(
                     onPressed: () {
-                      Get.to(Comptes());
+                      Get.offAllNamed(Comptes.routeName);
                     },
                     icon: Icon(Icons.person),
                     label: Text("Account Managment")),
@@ -36,16 +35,14 @@ class DashboardScreen extends GetWidget {
                 // ignore: deprecated_member_use
                 RaisedButton.icon(
                     onPressed: () {
-                      Get.to(Reclamation());
+                      Get.offAllNamed(Reclamation.routeName);
                     },
                     icon: Icon(Icons.mail),
                     label: Text("Complaints Managment")),
                 Spacer(),
                 // ignore: deprecated_member_use
                 RaisedButton.icon(
-                    onPressed: () {
-                      Get.to(Appeles());
-                    },
+                    onPressed: () {},
                     icon: Icon(Icons.post_add),
                     label: Text("Tenders Managment")),
                 Spacer(),
@@ -58,7 +55,7 @@ class DashboardScreen extends GetWidget {
                 // ignore: deprecated_member_use
                 RaisedButton.icon(
                     onPressed: () {
-                      Get.to(Soumission());
+                      Get.offAllNamed(Soumission.routeName);
                     },
                     icon: Icon(Icons.mail),
                     label: Text("Submission Managment")),
@@ -66,7 +63,7 @@ class DashboardScreen extends GetWidget {
                 // ignore: deprecated_member_use
                 RaisedButton.icon(
                     onPressed: () {
-                      Get.to(Signalments());
+                      Get.offAllNamed(Signalments.routeName);
                     },
                     icon: Icon(Icons.mail),
                     label: Text("Reporting Management  ")),
@@ -87,21 +84,11 @@ class SideMenu extends StatelessWidget {
       child: ListView(
         children: [
           DrawerHeader(
-            child: Image.asset("assets/images/logo.png"),
-          ),
-          ListTile(
-            onTap: () {},
-            leading: Icon(
-              Icons.notification_add,
-              color: Colors.white,
-            ),
-            title: Text("Notification", style: TextStyle(color: Colors.white)),
+            child: Image.asset("assets/images/admin.jpeg"),
           ),
           ListTile(
             onTap: () {
-              Get.offAll(
-                MainScreenAdmin(),
-              );
+              Get.offAllNamed(MainScreenAdmin.routeName);
             },
             leading: Icon(
               Icons.home,
@@ -119,7 +106,7 @@ class SideMenu extends StatelessWidget {
           ),
           ListTile(
             onTap: () {
-              Get.offAll(MainScreen());
+              Get.offAllNamed(MainScreen.routeName);
             },
             leading: Icon(
               Icons.logout,

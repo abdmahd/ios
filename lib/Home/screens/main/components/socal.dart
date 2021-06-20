@@ -1,4 +1,3 @@
-import 'package:final_project/Client/loginView.dart';
 import 'package:final_project/Guest/Guestshow.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -14,7 +13,7 @@ class Socal extends GetWidget {
       children: [
         ElevatedButton(
           onPressed: () {
-            Get.to(GusetShow());
+            Get.offAllNamed(GusetShow.routeName);
           },
           style: TextButton.styleFrom(
             padding: EdgeInsets.symmetric(

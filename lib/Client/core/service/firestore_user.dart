@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:final_project/Admin/screens/main/main_screen.dart';
 import 'package:final_project/Artisan/model/Artisan_model.dart';
 import 'package:final_project/Client/core/service/FirestoreService.dart';
 import 'package:final_project/Client/model/Demande.dart';
@@ -7,7 +8,11 @@ import 'package:final_project/Client/model/apeel_model.dart';
 import 'package:final_project/Client/model/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+<<<<<<< HEAD
 import 'package:get_storage/get_storage.dart';
+=======
+import 'package:url_launcher/url_launcher.dart';
+>>>>>>> 85170866ade64c164f257c8b00966da5a8d3ff9d
 
 class FireStoreUsers extends GetxController {
   ValueNotifier<bool> get loading => _loading;
@@ -104,6 +109,7 @@ class FireStoreUsers extends GetxController {
     });
   }
 
+<<<<<<< HEAD
   final box = GetStorage();
   final CollectionReference _appel =
       FirebaseFirestore.instance.collection('Appel');
@@ -121,4 +127,20 @@ class FireStoreUsers extends GetxController {
       print(_apell.length);
     });
   }
+=======
+  getDeleteUser(String uid) async {
+    await _artisanCollectionRef.doc(uid).delete().then((value) {
+      Get.offAll(MainScreenAdmin());
+      Get.snackbar("Erase is Done ", "Success");
+    }).catchError((onError) => Get.snackbar(
+        "Error In Deleting Account", onError.message,
+        colorText: Colors.black, snackPosition: SnackPosition.BOTTOM));
+  }
+
+  void launchURL() async => await canLaunch(
+          "https://console.firebase.google.com/u/1/project/final-project-25372/authentication/users")
+      ? await launch(
+          "https://console.firebase.google.com/u/1/project/final-project-25372/authentication/users")
+      : throw 'Could not launch ';
+>>>>>>> 85170866ade64c164f257c8b00966da5a8d3ff9d
 }

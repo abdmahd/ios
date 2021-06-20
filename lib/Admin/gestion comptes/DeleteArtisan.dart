@@ -1,14 +1,18 @@
-import 'package:final_project/Client/core/view_model/auth_view_model.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:final_project/Artisan/model/Artisan_model.dart';
+import 'package:final_project/Client/core/service/firestore_user.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class delateaccount extends StatelessWidget {
-  const delateaccount({Key key}) : super(key: key);
+// ignore: camel_case_types
+class deleteArtisan extends StatelessWidget {
+  ArtisanModel model;
+
+  deleteArtisan({this.model});
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<AuthViewModel>(
+    return GetBuilder<FireStoreUsers>(
+        init: FireStoreUsers(),
         builder: (controller) => Drawer(
               child: Center(
                 child: AlertDialog(
@@ -16,7 +20,10 @@ class delateaccount extends StatelessWidget {
                   content: Text("Are you sur? "),
                   actions: [
                     FlatButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        controller.getDeleteUser(model.artisanId);
+                        controller.launchURL();
+                      },
                       child: Text("YES"),
                     ),
                     FlatButton(

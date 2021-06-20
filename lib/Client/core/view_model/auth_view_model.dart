@@ -8,6 +8,7 @@ import 'package:final_project/Client/model/Demande.dart';
 import 'package:final_project/Client/model/Signal.dart';
 import 'package:final_project/Client/model/apeel_model.dart';
 import 'package:final_project/Client/model/user_model.dart';
+import 'package:final_project/Home/screens/main/main_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -72,10 +73,18 @@ class AuthViewModel extends GetxController {
       accessToken: googleSignInAuthentication.accessToken,
     );
     await _auth.signInWithCredential(Credential).then((user) async {
-      await FireStoreService().getUserCurr(_auth.currentUser.uid);
-      saveUser(user);
-
-      Get.offAll(HomeCLient());
+      try {
+        saveUser(user);
+        Get.offAllNamed(HomeCLient.routeName);
+      } on FirebaseException catch (e) {
+        print(e);
+        Get.snackbar(
+          'Error login account',
+          "$e",
+          colorText: Colors.black,
+          snackPosition: SnackPosition.BOTTOM,
+        );
+      }
     });
   }
 
@@ -86,9 +95,9 @@ class AuthViewModel extends GetxController {
           .signInWithEmailAndPassword(email: email, password: password)
           .then((value) async {
         await FireStoreService().getUserCurr(_auth.currentUser.uid);
-        Get.offAll(HomeCLient());
+        Get.offAllNamed(HomeCLient.routeName);
       });
-    } catch (e) {
+    } on FirebaseException catch (e) {
       print("$e");
       Get.snackbar("Error login account", "$e",
           colorText: Colors.black, snackPosition: SnackPosition.BOTTOM);
@@ -100,11 +109,13 @@ class AuthViewModel extends GetxController {
       await _auth
           .createUserWithEmailAndPassword(email: email, password: password)
           .then((user) async {
-        FireStoreService().getUserCurr(_auth.currentUser.uid);
         saveUser(user);
-      });
-      Get.offAll(HomeCLient());
-    } catch (e) {
+        Get.offAllNamed(MainScreen.routeName);
+        Get.snackbar("Account is Create ", "Success");
+      }).catchError((onError) => Get.snackbar(
+              "Error In Creating Account", onError.message,
+              colorText: Colors.black, snackPosition: SnackPosition.BOTTOM));
+    } on FirebaseException catch (e) {
       print(e);
       Get.snackbar(
         'Error login account',
@@ -113,6 +124,12 @@ class AuthViewModel extends GetxController {
         snackPosition: SnackPosition.BOTTOM,
       );
     }
+  }
+
+  void signOut() async {
+    GoogleSignIn().signOut();
+    _auth.signOut();
+    box.erase();
   }
 
   addAppele() async {
@@ -124,7 +141,7 @@ class AuthViewModel extends GetxController {
     ));
     print(_auth.currentUser.uid);
     await FireStoreUsers().addAppeleToFireStore(appelmodel).then((value) {
-      Get.offAll(HomeCLient());
+      Get.offAllNamed(HomeCLient.routeName);
       Get.snackbar(" Appele is add", "Success");
     }).catchError((onError) => Get.snackbar(
         "Error In Adding this appele", onError.message,
@@ -182,7 +199,7 @@ class AuthViewModel extends GetxController {
     ));
     print(_auth.currentUser.uid);
     await FireStoreUsers().addDemandeToFireStore(demandemodel).then((value) {
-      Get.offAll(HomeCLient());
+      Get.offAllNamed(HomeCLient.routeName);
       Get.snackbar(" Demande is add", "Success");
     }).catchError((onError) => Get.snackbar(
         "Error In Adding this Demande", onError.message,
@@ -213,14 +230,15 @@ class AuthViewModel extends GetxController {
         age: age == null ? "vide" : age,
         wilaya: wilaya == null ? "vide" : wilaya,
         email: user.user.email.toString(),
-        pic: 'default',
+        pic:
+            'https://firebasestorage.googleapis.com/v0/b/final-project-25372.appspot.com/o/profil-homme-barbe_18591-41573.jpg?alt=media&token=ff0b589b-de12-4f9b-8ea2-8fe2a5c5ae6f',
         phonenumber: phonenumber == null ? "vide" : phonenumber));
     await FireStoreUsers().addUserToFireStore(userModel);
   }
 
   void sendpasswordresetemail(String email) async {
     await _auth.sendPasswordResetEmail(email: email).then((value) {
-      Get.offAll(LoginView());
+      Get.offAllNamed(LoginView.routeName);
       Get.snackbar("Password Reset email link is been sent", "Success");
       // ignore: invalid_return_type_for_catch_error
     }).catchError((onError) => Get.snackbar(

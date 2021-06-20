@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class AuthAdmin extends StatefulWidget {
+  static const routeName = '/AuthAdmin';
   @override
   _AuthAdminState createState() => _AuthAdminState();
 }
@@ -89,7 +90,7 @@ class _AuthAdminState extends State<AuthAdmin> {
 
                           if (_EmailController.text == "admin@gmail.com" &&
                               _PassController.text == "123456789") {
-                            Get.to(MainScreenAdmin());
+                            Get.offAllNamed(MainScreenAdmin.routeName);
                           } else {
                             if (_PassController.text.length < 6) {
                               setState(() {
@@ -105,7 +106,7 @@ class _AuthAdminState extends State<AuthAdmin> {
                           }
                           if (_EmailController.text == "GBS@gmail.com" &&
                               _PassController.text == "lollol2525") {
-                            Get.offAll(MainScreenAdmin());
+                            Get.offAllNamed(MainScreenAdmin.routeName);
                           } else {
                             if (_PassController.text.length < 6) {
                               setState(() {
