@@ -11,100 +11,117 @@ class AppleOffer extends StatelessWidget {
     return GetBuilder<AuthViewModel>(
       init: AuthViewModel(),
       builder: (controller) => Scaffold(
+        drawer: SideMenuClient(),
         appBar: AppBar(
           title: Text(
             "Fomulair",
-            style: TextStyle(color: Colors.black),
+            style: TextStyle(color: Colors.lightBlue),
           ),
-          leading: IconButton(
-            onPressed: () {
-              Get.to(HomeCLient());
-            },
-            icon: Icon(Icons.arrow_back),
-          ),
+          backgroundColor: Colors.white,
         ),
         body: Center(
           child: Form(
               key: _formsKey,
-              child: Column(
-                children: [
-                  TextFormField(
-                    style: TextStyle(color: Colors.black),
-                    onSaved: (value) {
-                      controller.typework = value;
-                    },
-                    validator: (value) {
-                      return controller.validateFullname(value);
-                    },
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(23),
-                        borderSide: BorderSide.none,
-                      ),
-                      filled: true,
-                      fillColor: Colors.white,
-                      labelText: "Type Of Work",
-                      hintText: "Type of Work",
-                      hintStyle: TextStyle(color: Colors.black),
+              child: SizedBox(
+                width: 600,
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: 60,
                     ),
-                  ),
-                  SizedBox(
-                    height: 40,
-                  ),
-                  TextFormField(
-                    style: TextStyle(color: Colors.black),
-                    onSaved: (value) {
-                      controller.location = value;
-                    },
-                    validator: (value) {
-                      return controller.validateCity(value);
-                    },
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(23),
-                        borderSide: BorderSide.none,
+                    Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(50),
+                        color: Colors.white,
                       ),
-                      filled: true,
-                      fillColor: Colors.white,
-                      labelText: "Location",
-                      hintText: "Location",
-                      hintStyle: TextStyle(color: Colors.black),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 40,
-                  ),
-                  TextFormField(
-                    style: TextStyle(color: Colors.black),
-                    onSaved: (value) {
-                      controller.description = value;
-                    },
-                    validator: (value) {
-                      return controller.validateCity(value);
-                    },
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(23),
-                        borderSide: BorderSide.none,
+                      child: TextFormField(
+                        style: TextStyle(color: Colors.black),
+                        onSaved: (value) {
+                          controller.typework = value;
+                        },
+                        validator: (value) {
+                          return controller.validateFullname(value);
+                        },
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(23),
+                            borderSide: BorderSide.none,
+                          ),
+                          labelText: "Type Of Work",
+                          hintText: "Type of Work",
+                          hintStyle: TextStyle(color: Colors.black),
+                        ),
                       ),
-                      filled: true,
-                      fillColor: Colors.white,
-                      labelText: "Description",
-                      hintText: "Description",
-                      hintStyle: TextStyle(color: Colors.black),
                     ),
-                  ),
-                  // ignore: deprecated_member_use
-                  FlatButton(
-                      onPressed: () {
-                        _formsKey.currentState.save();
-
-                        if (_formsKey.currentState.validate()) {
-                          controller.addAppele();
-                        }
+                    SizedBox(
+                      height: 60,
+                    ),
+                    TextFormField(
+                      style: TextStyle(color: Colors.black),
+                      onSaved: (value) {
+                        controller.location = value;
                       },
-                      child: Text("Add"))
-                ],
+                      validator: (value) {
+                        return controller.validateCity(value);
+                      },
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(23),
+                          borderSide: BorderSide.none,
+                        ),
+                        filled: true,
+                        fillColor: Colors.white,
+                        labelText: "Location",
+                        hintText: "Location",
+                        hintStyle: TextStyle(color: Colors.black),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 60,
+                    ),
+                    TextFormField(
+                      style: TextStyle(color: Colors.black),
+                      onSaved: (value) {
+                        controller.description = value;
+                      },
+                      validator: (value) {
+                        return controller.validateCity(value);
+                      },
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(23),
+                          borderSide: BorderSide.none,
+                        ),
+                        filled: true,
+                        fillColor: Colors.white,
+                        labelText: "Description",
+                        hintText: "Description",
+                        hintStyle: TextStyle(color: Colors.black),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 60,
+                    ),
+                    Container(
+                      child: FlatButton.icon(
+                        onPressed: () {
+                          _formsKey.currentState.save();
+
+                          if (_formsKey.currentState.validate()) {
+                            controller.addAppele();
+                          }
+                        },
+                        label: Text(
+                          "Add",
+                          style: TextStyle(
+                            color: Colors.white,
+                          ),
+                        ),
+                        icon: Icon(Icons.addchart_sharp),
+                      ),
+                    )
+                  ],
+                ),
               )),
         ),
       ),

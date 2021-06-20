@@ -2,10 +2,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:final_project/Artisan/model/Artisan_model.dart';
 import 'package:final_project/Client/core/service/FirestoreService.dart';
 import 'package:final_project/Client/model/Demande.dart';
+import 'package:final_project/Client/model/Signal.dart';
 import 'package:final_project/Client/model/apeel_model.dart';
 import 'package:final_project/Client/model/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
 class FireStoreUsers extends GetxController {
   ValueNotifier<bool> get loading => _loading;
@@ -54,10 +56,18 @@ class FireStoreUsers extends GetxController {
     return await _demande.add(demandemodel.toJson());
   }
 
+  final CollectionReference _signalmodel =
+      FirebaseFirestore.instance.collection('SignalClient');
+
+  Future<void> addSignalToFireStore(SignalModel signalmodel) async {
+    return await _signalmodel.add(signalmodel.toJson());
+  }
+
   FireStoreUsers() {
     getArtisan();
     getUsers();
     getAppel();
+    getAppelByClient(box.read("user")['userId']);
   }
 
   getArtisan() async {
@@ -91,6 +101,24 @@ class FireStoreUsers extends GetxController {
       }
       _loading.value = false;
       update();
+    });
+  }
+
+  final box = GetStorage();
+  final CollectionReference _appel =
+      FirebaseFirestore.instance.collection('Appel');
+
+  List<ApellModel> get apell => _apell;
+  List<ApellModel> _apell = [];
+
+  Future<List<QueryDocumentSnapshot>> getAppelByClient(String uid) {
+    // code to convert the first character to uppercase
+
+    _appel.where("userId", isEqualTo: uid).get().then((value) {
+      for (var i = 0; i < value.docs.length; i++) {
+        _apell.add(ApellModel.fromJson(value.docs[i].data()));
+      }
+      print(_apell.length);
     });
   }
 }

@@ -1,3 +1,4 @@
+import 'package:final_project/Artisan/HomeArt.dart';
 import 'package:final_project/Artisan/loginView_Art.dart';
 import 'package:final_project/Artisan/model/Artisan_model.dart';
 import 'package:final_project/Client/HomeClient.dart';
@@ -62,14 +63,14 @@ class AuthViewModelArtisan extends GetxController {
     );
     await _auth.signInWithCredential(Credential).then((artisan) async {
       saveUserArt(artisan);
-      Get.offAll(HomeCLient());
+      Get.offAll(HomeArt());
     });
   }
 
   void signInWithEmailAndPasswordArt() async {
     try {
       await _auth.signInWithEmailAndPassword(email: email, password: password);
-      Get.offAll(HomeCLient());
+      Get.offAll(HomeArt());
     } catch (e) {
       print("$e");
       Get.snackbar("Error login account", "$e",

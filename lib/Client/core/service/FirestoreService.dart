@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:final_project/Artisan/model/Artisan_model.dart';
+import 'package:final_project/Client/model/apeel_model.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 

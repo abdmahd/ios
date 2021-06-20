@@ -101,7 +101,6 @@ class LoginView extends GetWidget<AuthViewModel> {
                                     border: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(23),
                                         borderSide: BorderSide.none),
-
                                     filled: true,
                                     fillColor: Colors.white,
                                     hintText: "*****@****.com",
@@ -139,7 +138,6 @@ class LoginView extends GetWidget<AuthViewModel> {
                                       borderSide: BorderSide.none,
                                     ),
                                     labelText: "Password",
-                                    
                                     filled: true,
                                     fillColor: Colors.white,
                                     hintText: "*******",

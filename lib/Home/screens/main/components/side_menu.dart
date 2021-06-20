@@ -1,7 +1,9 @@
 import 'package:final_project/Admin/Auth_view/AuthAdmin.dart';
 import 'package:final_project/Artisan/loginView_Art.dart';
 import 'package:final_project/Client/loginView.dart';
+import 'package:final_project/Home/About_Us.dart';
 import 'package:final_project/Home/contactus.dart';
+import 'package:final_project/Home/screens/main/main_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -23,6 +25,12 @@ class SideMenu extends StatelessWidget {
             width: 0,
             height: 0,
           )),
+          DrawerListTile(
+            title: "Home-Screen",
+            press: () {
+              Get.offAll(MainScreen());
+            },
+          ),
           if (Responsive.isDesktop(context))
             DrawerListTile(
               title: "Admin",
@@ -44,7 +52,9 @@ class SideMenu extends StatelessWidget {
           ),
           DrawerListTile(
             title: "About us",
-            press: () {},
+            press: () {
+              Get.offAll(Aboutus());
+            },
           ),
           DrawerListTile(
             title: "Contact us",

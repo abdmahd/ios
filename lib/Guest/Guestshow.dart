@@ -1,5 +1,6 @@
 import 'package:final_project/Client/core/service/firestore_user.dart';
 import 'package:final_project/Client/loginView.dart';
+import 'package:final_project/Home/screens/main/main_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:final_project/Client/responsive.dart';
@@ -19,6 +20,13 @@ class GusetShow extends StatelessWidget {
               height: 50,
             ),
             Listeguestshow(),
+            SizedBox(
+              height: 30,
+            ),
+            RaisedButton(onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => MainScreen()));
+            })
           ],
         ),
       ),

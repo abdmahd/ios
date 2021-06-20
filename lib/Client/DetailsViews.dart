@@ -2,6 +2,7 @@ import 'package:contactus/contactus.dart';
 import 'package:final_project/Artisan/model/Artisan_model.dart';
 import 'package:final_project/Client/Ask.dart';
 import 'package:final_project/Client/HomeClient.dart';
+import 'package:final_project/Client/Signale.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -16,12 +17,14 @@ class DetailsView extends StatelessWidget {
       body: Container(
         child: Column(
           children: [
-            Container(
-              width: MediaQuery.of(context).size.width,
-              height: 320,
-              child: Image.network(
-                model.pic,
-                fit: BoxFit.fill,
+            Center(
+              child: Container(
+                width: 200,
+                height: 200,
+                child: Image.network(
+                  model.pic,
+                  fit: BoxFit.fill,
+                ),
               ),
             ),
             SizedBox(
@@ -29,9 +32,8 @@ class DetailsView extends StatelessWidget {
               width: 30,
             ),
             Expanded(
-              child: SingleChildScrollView(
-                child: Container(
-                  padding: EdgeInsets.all(18),
+              child: ListView(children: [
+                Container(
                   child: Column(
                     children: [
                       SizedBox(
@@ -74,71 +76,87 @@ class DetailsView extends StatelessWidget {
                         height: 15,
                       ),
                       Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Center(
-                            child: Container(
-                              padding: EdgeInsets.all(16),
-                              width: MediaQuery.of(context).size.width * 1,
-                              child: ContactUs(
-                                email: model.email,
-                                tagLine: 'Contact him with E-mail',
-                                textColor: Colors.black,
-                                cardColor: Colors.white,
-                                companyColor: Colors.white,
-                                companyName: '',
-                                taglineFontWeight: FontWeight.w100,
-                                taglineColor: Colors.white,
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Center(
+                              child: Container(
+                                padding: EdgeInsets.all(16),
+                                width: MediaQuery.of(context).size.width * 1,
+                                child: ContactUs(
+                                  email: model.email,
+                                  tagLine: 'Contact him with E-mail',
+                                  textColor: Colors.black,
+                                  cardColor: Colors.white,
+                                  companyColor: Colors.white,
+                                  companyName: '',
+                                  taglineFontWeight: FontWeight.w100,
+                                  taglineColor: Colors.white,
+                                ),
                               ),
                             ),
-                          ),
-                          Row(
-                            children: [
-                              Container(
-                                padding: EdgeInsets.all(16),
-                                width: MediaQuery.of(context).size.width * .4,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(20),
-                                    border: Border.all(
-                                      color: Colors.grey,
-                                    )),
-                                child: Row(
-                                  children: [
-                                    FlatButton.icon(
+                            SizedBox(
+                              height: 25,
+                            ),
+                            Row(
+                              children: [
+                                Spacer(),
+                                Center(
+                                  child: Container(
+                                    width:
+                                        MediaQuery.of(context).size.width * .4,
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(20),
+                                        border: Border.all(
+                                          color: Colors.grey,
+                                        )),
+                                    child: FlatButton.icon(
                                         onPressed: () {
                                           Get.offAll(HomeCLient());
                                         },
                                         icon: Icon(Icons.arrow_back),
                                         label: Text("Return to ")),
-                                  ],
+                                  ),
                                 ),
-                              ),
-                              Spacer(),
-                              Container(
-                                padding: EdgeInsets.all(16),
-                                width: MediaQuery.of(context).size.width * .44,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(20),
-                                    border: Border.all(
-                                      color: Colors.grey,
-                                    )),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceAround,
-                                  children: [
-                                    FlatButton.icon(
-                                        onPressed: () {
-                                          Get.to(Ask(model: model));
-                                        },
-                                        icon: Icon(Icons.shop),
-                                        label: Text("Ask for him"))
-                                  ],
+                                Spacer(),
+                                Container(
+                                  width: MediaQuery.of(context).size.width * .4,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(20),
+                                      border: Border.all(
+                                        color: Colors.grey,
+                                      )),
+                                  child: FlatButton.icon(
+                                      onPressed: () {
+                                        Get.offAll(Ask(
+                                          model: model,
+                                        ));
+                                      },
+                                      icon: Icon(Icons.add),
+                                      label: Text("Ask for him ")),
                                 ),
-                              ),
-                            ],
-                          )
-                        ],
-                      ),
+                                Spacer(),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 25,
+                            ),
+                            Container(
+                              padding: EdgeInsets.all(16),
+                              width: MediaQuery.of(context).size.width * .4,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(20),
+                                  border: Border.all(
+                                    color: Colors.grey,
+                                  )),
+                              child: FlatButton.icon(
+                                  onPressed: () {
+                                    Get.offAll(Signalet(model: model));
+                                  },
+                                  icon:
+                                      Icon(Icons.report_gmailerrorred_outlined),
+                                  label: Text("Signal ")),
+                            )
+                          ]),
                       SizedBox(
                         height: 15,
                       ),
@@ -148,7 +166,7 @@ class DetailsView extends StatelessWidget {
                     ],
                   ),
                 ),
-              ),
+              ]),
             ),
             Padding(
               padding: const EdgeInsets.all(30),

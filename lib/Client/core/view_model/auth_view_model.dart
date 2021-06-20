@@ -1,9 +1,11 @@
+import 'package:final_project/Admin/gestion%20comptes/Appel.dart';
 import 'package:final_project/Client/HomeClient.dart';
 import 'package:final_project/Client/core/service/FirestoreService.dart';
 
 import 'package:final_project/Client/core/service/firestore_user.dart';
 import 'package:final_project/Client/loginView.dart';
 import 'package:final_project/Client/model/Demande.dart';
+import 'package:final_project/Client/model/Signal.dart';
 import 'package:final_project/Client/model/apeel_model.dart';
 import 'package:final_project/Client/model/user_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -35,6 +37,9 @@ class AuthViewModel extends GetxController {
       confimP = '',
       typework,
       location,
+      typeraport,
+      descriptionsignal,
+      newEmail,
       description;
   @override
   void onInit() {
@@ -126,6 +131,47 @@ class AuthViewModel extends GetxController {
         colorText: Colors.black, snackPosition: SnackPosition.BOTTOM));
   }
 
+  final before = GetStorage();
+
+  void updateUser() async {
+    before.write("usser", box.read("user"));
+    UserModel userModel = (UserModel(
+        userId: _auth.currentUser.uid,
+        fullname: fullname,
+        username: username,
+        age: age,
+        wilaya: wilaya,
+        email: _auth.currentUser.email,
+        pic: 'default',
+        phonenumber: phonenumber));
+
+    await FireStoreUsers().addUserToFireStore(userModel).then((value) {
+      Get.offAll(HomeCLient());
+      Get.snackbar(" Profil is Updated", "Succesufully");
+    }).catchError((onError) => Get.snackbar(
+        "Error In Changing the ", onError.message,
+        colorText: Colors.black, snackPosition: SnackPosition.BOTTOM));
+    update();
+  }
+
+  void updateappel() async {
+    print(description);
+    ApellModel apellModel = (ApellModel(
+      userId: _auth.currentUser.uid,
+      description: description,
+      typework: typework,
+      location: location,
+    ));
+
+    await FireStoreUsers().addAppeleToFireStore(apellModel).then((value) {
+      Get.offAll(HomeCLient());
+      Get.snackbar(" Profil is Updated", "Succesufully");
+    }).catchError((onError) => Get.snackbar(
+        "Error In Changing the ", onError.message,
+        colorText: Colors.black, snackPosition: SnackPosition.BOTTOM));
+    update();
+  }
+
   addDemande(String uid) async {
     Demande demandemodel = (Demande(
       userId: _auth.currentUser.uid,
@@ -140,6 +186,22 @@ class AuthViewModel extends GetxController {
       Get.snackbar(" Demande is add", "Success");
     }).catchError((onError) => Get.snackbar(
         "Error In Adding this Demande", onError.message,
+        colorText: Colors.black, snackPosition: SnackPosition.BOTTOM));
+  }
+
+  addSignal(String uid) async {
+    SignalModel signalmodel = (SignalModel(
+      userId: _auth.currentUser.uid,
+      artisanId: uid,
+      typeraport: typeraport,
+      descriptionsignal: descriptionsignal,
+    ));
+    print(_auth.currentUser.uid);
+    await FireStoreUsers().addSignalToFireStore(signalmodel).then((value) {
+      Get.offAll(HomeCLient());
+      Get.snackbar(" Signal is send we wil Traite your probleme", "Success");
+    }).catchError((onError) => Get.snackbar(
+        "Error In Adding this Signal", onError.message,
         colorText: Colors.black, snackPosition: SnackPosition.BOTTOM));
   }
 

@@ -1,11 +1,13 @@
 import 'package:final_project/Client/AppelOffert.dart';
 import 'package:final_project/Client/Art.dart';
+import 'package:final_project/Client/ListAppelClient.dart';
 import 'package:final_project/Client/ProfilView.dart';
 import 'package:final_project/Client/constants.dart';
 import 'package:final_project/Client/core/view_model/auth_view_model.dart';
 
 import 'package:final_project/Client/responsive.dart';
 import 'package:final_project/Home/constants.dart';
+import 'package:final_project/Home/screens/home/home_screen.dart';
 import 'package:final_project/Home/screens/main/main_screen.dart';
 
 import 'package:flutter/material.dart';
@@ -49,19 +51,26 @@ class SideMenuClient extends StatelessWidget {
             DrawerListTile(
               title: "Home-Page",
               press: () {
-                Get.offAll(AppleOffer());
+                Get.offAll(HomeCLient());
               },
             ),
             DrawerListTile(
               title: "Profil",
               press: () {
-                Get.offAll(ProfilVie());
+                Get.offAll(ProfilView());
               },
             ),
             DrawerListTile(
-              title: "Setings",
-              press: () {},
+              title: "Ask for worker",
+              press: () {
+                Get.offAll(AppleOffer());
+              },
             ),
+            DrawerListTile(
+                title: "My calls",
+                press: () {
+                  Get.offAll(ListAppelClinet());
+                }),
             DrawerListTile(
               title: "About us",
               press: () {},

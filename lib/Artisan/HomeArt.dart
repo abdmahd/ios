@@ -122,7 +122,7 @@ class HeaderArt extends StatelessWidget {
                       alignment: Alignment.topRight, child: SearchField()),
                   SizedBox(height: kDefaultPadding * 2),
                   Text(
-                    "Welcome to Client Area",
+                    "Welcome to Artisan Area",
                     style: TextStyle(
                       fontSize: 32,
                       color: Colors.white,
